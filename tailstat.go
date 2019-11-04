@@ -7,6 +7,7 @@ import (
 	"strings"
 	"sync"
 	"net"
+	"github.com/coreos/go-systemd/daemon"
 )
 
 
@@ -56,6 +57,7 @@ func sendMetric(t time.Time, name string, Counter int) {
 func main() {
 // 	fmt.Println("starting")
 	initCfg()
+	daemon.SdNotify(false, "READY=1") 
 //	daemon(0,0)
 // 	fmt.Println("started")
 	go printMetrics()
